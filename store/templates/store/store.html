@@ -1,0 +1,44 @@
+{% extends 'store/index.html' %}
+{% load static %}
+{% block content %}
+
+
+    <br>
+
+
+
+    <div class="row justify-content-center">
+
+        {% for product in products %}
+            
+            <div class="col-lg-auto">
+                <img class="thumbnail" src="{{product.imgUrl}}" alt="">
+                <div class="box-element product">
+                    <h6><strong>{{product.name}}</strong> </h6>
+                    <p>{{product.descreption}}</p>
+                    {% if request.user.is_staff %}
+                    <a class="btn btn-sm btn-primary" href={% url 'edit_product' product.id %}>Edit</a>
+                    <a class="btn btn-sm btn-danger" href={% url 'delete_product' product.id %}>Delete</a>                    
+                    {% endif %}
+                    <hr>                
+                    <button data-product={{product.id}} data-action="add" 
+                    class="btn btn-sm btn-outline-dark update-cart">Add to cart</button>
+                    <a class="btn btn-sm btn-outline-warning" href={% url 'product' product.id %}>View</a>                    
+                    <h6 style="display: inline-block;">{{product.price}}L.E</h6>
+                </div>
+            </div>
+        {% endfor %}
+        {% if request.user.is_staff %}
+        <div class="col-lg-auto">
+            <a href={% url 'create_product' %}>
+                <img style="display: block; margin: 92.5px auto;opacity: 75%;" 
+                src="{% static 'images/icons/add.png' %}" alt="">
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock content %}
+
+
+

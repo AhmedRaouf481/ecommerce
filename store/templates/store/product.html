@@ -1,0 +1,43 @@
+{% extends 'store/index.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="col-md">
+            <div class="card card-body"> 
+                    
+                <div class="product-view">
+
+                   
+                    <img class="product-img" src="{{ product.imgUrl }}" alt="">
+                    
+                    <div class="product-detiles">
+                        <h6 class="label" ><strong>{{product.name}}</strong></h6>
+                        <p class="label">{{product.descreption}}</p>
+                        <p style="margin:0 0 8px;">price: </p>
+                        <span id="product-price" >{{product.price}}L.E</span>
+                        <p>Quantity: </p>
+                        <div style="display: inline-block;">  
+                            <button data-product={{item.product.id}} data-action="remove"
+                            style="margin-right: 6px;outline: none;" id="remove-qty" class="change_quantity">                              
+                                <img src="{% static '/images/icons/remove.png' %}" alt="">
+                            </button>
+                            <span id="qty-val">1</span>
+                            <button data-product={{item.product.id}} data-action="add" data-quantity=${$(`#qty-val`).html()}
+                            style="margin-left: 6px;outline: none;" id="add-qty" class="change_quantity">
+                                <img src="{% static '/images/icons/plus.png' %}" alt="">
+                            </button>
+                        </div> 
+                        <hr>
+                        <button class="btn  btn-warning" style="text-transform: uppercase;">buy now</button>
+                        <button data-product={{product.id}} data-action="add" 
+                        class="btn  btn-outline-dark" id="add-to-cart" style="text-transform: uppercase;">Add to cart</button>
+                    </div>
+                                
+                    
+                </div>
+
+            </div>
+
+        </div>
+{% endblock content %}
